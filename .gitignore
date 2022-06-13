@@ -1,0 +1,5 @@
+*.pem
+node_modules
+certs
+.env
+package-lock.json
