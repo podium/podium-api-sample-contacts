@@ -1,5 +1,5 @@
 {
-  "name": "podium-api",
+  "name": "podium-api-sample-contacts",
   "version": "1.0.0",
   "description": "A Podium demo app for CRUD contacts",
   "main": "index.js",
@@ -9,14 +9,14 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jairoadi/podium-api-demo.git"
+    "url": "https://github.com/podium/podium-api-sample-contacts.git"
   },
   "author": "Jairo Franco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jairoadi/podium-api-demo/issues"
+    "url": "https://github.com/podium/podium-api-sample-contacts/issues"
   },
-  "homepage": "https://github.com/jairoadi/podium-api-demo#readme",
+  "homepage": "https://github.com/podium/podium-api-sample-contacts#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
