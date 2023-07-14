@@ -10,9 +10,9 @@ module.exports = {
         jest: true,
         node: true,
       },
-      files: [".eslintrc.{js,cjs}"],
+      files: ["**/*.test.js", "**/*.test.jsx", ".eslintrc.{js,cjs}"],
       parserOptions: {
-        sourceType: "script",
+        sourceType: "module",
       },
     },
   ],
