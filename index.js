@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 export const app = express();
 
 const baseUrl = "https://api.podium.com/v4/";
-const refresToken = process.env.REFRESHTOKEN;
+const refreshToken = process.env.REFRESHTOKEN;
 const clientID = process.env.CLIENTID;
 const clientSecret = process.env.CLIENTSECRET;
 
@@ -66,7 +66,7 @@ export async function getTokenID() {
     client_id: clientID,
     client_secret: clientSecret,
     grant_type: "refresh_token",
-    refresh_token: refresToken,
+    refresh_token: refreshToken,
   };
 
   try {
@@ -87,7 +87,7 @@ export async function getTokenID() {
       return tokenResponse.access_token;
     }
   } catch (error) {
-    console.error(`Error retrieveing a new token, ${error}`);
+    console.error(`Error retrieving a new token, ${error}`);
     return error;
   }
 }
