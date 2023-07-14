@@ -1,26 +1,30 @@
 {
-  "name": "podium-api",
+  "name": "podium-api-sample-contacts",
   "version": "1.0.0",
   "description": "A Podium demo app for CRUD contacts",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
   },
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jairoadi/podium-api-demo.git"
+    "url": "https://github.com/podium/podium-api-sample-contacts.git"
   },
   "author": "Jairo Franco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jairoadi/podium-api-demo/issues"
+    "url": "https://github.com/podium/podium-api-sample-contacts/issues"
   },
-  "homepage": "https://github.com/jairoadi/podium-api-demo#readme",
+  "homepage": "https://github.com/podium/podium-api-sample-contacts#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
+    "express": "^4.18.2",
     "node-fetch": "^3.2.4"
+  },
+  "devDependencies": {
+    "jest": "^29.6.1"
   }
 }
