@@ -1,0 +1,66 @@
+stages:
+  - test
+  - deploy
+
+variables:
+  image: node:18.20.4
+  RUNNER_IMAGE: node:18.20.4
+  CONTAINER_BRANCH_IMAGE: '${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}'
+  CONTAINER_SHA_IMAGE: '${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
+  RUN_API_E2E: 'no'
+
+# Leveraging javascript-job-templates for: cache, yarn-compile, yarn-test, yarn-lint, yarn-format
+# See https://gitlab.podium.com/engineering/ops/deployer/-/blob/master/shared-gitlab-ymls/javascript-job-templates.md
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+before_script:
+  - echo "Setting up the environment"
+  - yarn cache clean
+  - yarn install
+
+## Handles all the yarn installing and caching for the project
+yarn-setup:
+  extends: .yarn-setup
+
+format_test:
+  extends: .yarn-format
+
+lint:
+  extends: .yarn-lint
+
+test:
+  stage: test
+  script:
+    - echo "Running tests"
+    - yarn test
+
+deploy:
+  stage: deploy
+  resource_group: production
+  environment:
+    name: prod-usw2-kubernetes
+  rules:
+    - if: '$SCHEDULED_PROD_TEST == "true"'
+      when: never
+    - if: '$HELM_PUBLISH'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  script:
+    - /usr/local/bin/secrets.sh
+    - /usr/local/bin/deploy-kubernetes.sh
+  tags:
+    - prod-usw2-kubernetes
+  variables:
+    CD_USE_ECR: 'true'
+
+include:
+  - project: 'engineering/ops/deployer'
+    file: 'shared-gitlab-ymls/security-mr-only.yml'
+    ref: master
+  - project: 'engineering/ops/deployer'
+    file: 'shared-gitlab-ymls/general.yml'
+    ref: master

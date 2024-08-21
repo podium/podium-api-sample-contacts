@@ -3,9 +3,9 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: "eslint:recommended",
+  extends: 'eslint:recommended',
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
 };
