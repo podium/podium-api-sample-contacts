@@ -3,8 +3,8 @@ stages:
   - deploy
 
 variables:
-  image: node:18.20.4
-  RUNNER_IMAGE: node:18.20.4
+  image: node:21.3.0
+  RUNNER_IMAGE: node:21.3.0
   CONTAINER_BRANCH_IMAGE: '${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}'
   CONTAINER_SHA_IMAGE: '${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}'
   RUN_API_E2E: 'no'
