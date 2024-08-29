@@ -13,28 +13,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout repository"
+      - name: 'Checkout repository'
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - name: "Use Node.js"
+      - name: 'Use Node.js'
         uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
-      - run: npm install
-      - run: npm run lint
+          node-version: '21.x'
+      - run: yarn install
+      - run: yarn lint
 
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: 'Use Node.js'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21.x'
+      - run: yarn install
+      - run: yarn format
+      - run: yarn format:check
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout repository"
+      - name: 'Checkout repository'
         uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - name: "Use Node.js"
+      - name: 'Use Node.js'
         uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
-      - run: npm install
-      - run: npm test
+          node-version: '21.x'
+      - run: yarn install
+      - run: yarn test
