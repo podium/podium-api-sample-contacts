@@ -16,6 +16,9 @@
   },
   "author": "Jairo Franco",
   "license": "ISC",
+  "engines": {
+    "node": "21.x"
+  },
   "bugs": {
     "url": "https://github.com/podium/podium-api-sample-contacts/issues"
   },
